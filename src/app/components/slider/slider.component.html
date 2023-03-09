@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h5 class="display-3 lead text-center text-info">Slider Images</h5>
+      <div class="form-outline mb-4 text-center mt-5">
+        <label class="form-label text-primary text-center" for="imageUrl">
+          choose image</label
+        >
+        <input
+          type="file"
+          id="imageUrl"
+          class="form-control"
+          accept="image/*"
+          (change)="imageUpload($event)"
+        />
+        <button
+          class="btn btn-lh btn-outline-primary mt-5"
+          (click)="upload()"
+          [disabled]="!imageUrl.value"
+        >
+          Upload
+        </button>
+      </div>
+      <div class="text-center" *ngIf="slider.length != 0">
+        <h6 class="text-center mt-5 text-capitalize display-5 text-primary">
+          current images
+        </h6>
+        <div *ngFor="let image of slider" class="d-inline-block">
+          <img
+            src="{{ image!.imageUrl }}"
+            class="img-thumbnail slider-image ms-3 mt-3"
+            alt="slider image"
+          />
+          <button
+            class="btn btn-danger btn-delete mt-2 d-block"
+            (click)="deleteImage(image._id)"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+      <div class="text-center">
+        <button
+          class="btn btn-danger mt-5"
+          *ngIf="slider.length != 0"
+          (click)="deleteAllSliderImages()"
+        >
+          Delete All
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

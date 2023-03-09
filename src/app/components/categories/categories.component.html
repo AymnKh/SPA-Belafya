@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h5 class="display-3 lead text-center text-info">Categories</h5>
+      <form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="categoryName"
+            placeholder="name"
+            formControlName="name"
+          />
+          <label for="categoryName">Category Name</label>
+        </div>
+        <div class="form-outline mb-4  mt-5">
+          <label class="form-label text-primary " for="image">
+            choose image</label
+          >
+          <input
+            type="file"
+            id="image"
+            class="form-control"
+            accept="image/*"
+            (change)="imageUpload($event)"
+          />
+          <button
+            class="btn btn-lh btn-outline-primary mt-5"
+            type="submit"
+            [disabled]="!categoryForm.valid"
+          >
+            Add Category
+          </button>
+        </div>
+      </form>
+      <div class="text-center" *ngIf="Categories.length > 0">
+        <h6 class="text-center mt-5 text-capitalize display-5 text-primary">
+          current categories
+        </h6>
+        <div class="d-inline-block" *ngFor="let cat of Categories">
+          <img
+            src="{{ cat.image }}"
+            class="img-thumbnail slider-image ms-3 mt-3"
+            alt="slider image"
+          />
+          <h3 class="text-primary lead display-6">{{ cat.name }}</h3>
+          <button
+            class="btn btn-danger btn-delete mt-2 d-block"
+            (click)="deleteCategory(cat._id)"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+      <div class="text-center">
+        <button
+          class="btn btn-danger mt-5"
+          *ngIf="Categories.length > 0"
+          (click)="deleteAllCategories()"
+        >
+          Delete All
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
