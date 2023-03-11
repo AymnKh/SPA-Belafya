@@ -23,6 +23,7 @@ export class CategoriesComponent implements OnInit {
   formInit() {
     this.categoryForm = new FormGroup({
       "name": new FormControl('', Validators.required),
+      "name_ar": new FormControl('', Validators.required),
       "image": new FormControl('', Validators.required),
     });
   }
@@ -44,6 +45,7 @@ export class CategoriesComponent implements OnInit {
   getAllCategories() {
     this.categoriesService.getAllCategories().subscribe({
       next: (data) => {
+        console.log(data);
         this.Categories = data;
       },
       error: (err) => {

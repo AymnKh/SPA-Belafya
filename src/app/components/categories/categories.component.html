@@ -13,8 +13,18 @@
           />
           <label for="categoryName">Category Name</label>
         </div>
-        <div class="form-outline mb-4  mt-5">
-          <label class="form-label text-primary " for="image">
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="categoryName"
+            placeholder="name"
+            formControlName="name_ar"
+          />
+          <label for="categoryName">Category Name Arabic</label>
+        </div>
+        <div class="form-outline mb-4 mt-5">
+          <label class="form-label text-primary" for="image">
             choose image</label
           >
           <input
@@ -43,7 +53,8 @@
             class="img-thumbnail slider-image ms-3 mt-3"
             alt="slider image"
           />
-          <h3 class="text-primary lead display-6">{{ cat.name }}</h3>
+          <h3 class="text-primary lead display-6">{{ cat.name.en}}</h3>
+          <h3 class="text-primary lead display-6">{{ cat.name.ar}}</h3>
           <button
             class="btn btn-danger btn-delete mt-2 d-block"
             (click)="deleteCategory(cat._id)"

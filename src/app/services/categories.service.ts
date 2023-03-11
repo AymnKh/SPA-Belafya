@@ -15,7 +15,13 @@ export class CategoriesService {
   }
 
   getAllCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>('http://localhost:3000/api/v1/categories');
+    return this.http.get<Category[]>('http://localhost:3000/api/v1/categories', {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'accept-language': ''
+      }
+    });
   }
 
   deleteCategoryById(id: string) {
