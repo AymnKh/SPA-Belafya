@@ -16,66 +16,67 @@ export class CategoriesComponent implements OnInit {
   Categories: Category[] = [];
   constructor(private categoriesService: CategoriesService) { }
   ngOnInit(): void {
-    this.formInit();
-    this.getAllCategories();
+    this.formInit(); // initialize the form
+    this.getAllCategories(); // get all categories
   }
 
   formInit() {
-    this.categoryForm = new FormGroup({
+    this.categoryForm = new FormGroup({ // initialize the form
       "name": new FormControl('', Validators.required),
       "name_ar": new FormControl('', Validators.required),
       "image": new FormControl('', Validators.required),
     });
   }
   addCategory() {
-    const categoryFormData = new FormData();
-    Object.keys(this.categoryForm.controls).forEach((k => {
+    const categoryFormData = new FormData();  // create a new form data
+    Object.keys(this.categoryForm.controls).forEach((k => { // loop through the form controls
       categoryFormData.append(k, this.categoryForm.get(k)?.value);
     }));
-    this.categoriesService.addCategory(categoryFormData).subscribe({
+    this.categoriesService.addCategory(categoryFormData).subscribe({ // send the form data to the backend
       next: (data) => {
-        location.reload();
+        location.reload(); // reload the page
       },
       error: (err) => {
-        console.log(err)
+        alert(err.message) // log the error
       }
     });
   }
 
   getAllCategories() {
-    this.categoriesService.getAllCategories().subscribe({
+    this.categoriesService.getAllCategories().subscribe({ // get all categories
       next: (data) => {
-        console.log(data);
-        this.Categories = data;
+        this.Categories = data; // assign the data to the categories array
       },
       error: (err) => {
-        alert(err)
+        alert(err) // log the error
       }
     });
   }
 
   deleteCategory(id: string) {
-    this.categoriesService.deleteCategoryById(id).subscribe({
+    this.categoriesService.deleteCategoryById(id).subscribe({ // delete category by id
       next: (data) => {
-        location.reload();      },
+        location.reload(); // reload the page
+      },
       error: (err) => {
-        console.log(err)
+        console.log(err) // log the error
       }
     })
   }
   deleteAllCategories() {
-    this.categoriesService.deleteAllCategories().subscribe({
+    this.categoriesService.deleteAllCategories().subscribe({ // delete all categories
       next: (data) => {
-        location.reload();      },
-      error: (err) => {
+        location.reload(); // reload the page
+      },
+      error: (err) => { // log the error
         console.log(err)
       }
     })
   }
   imageUpload(event: any) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.categoryForm.get('image')?.setValue(file);
+    if (event.target.files.length > 0) { // check if the user selected an image
+      const file = event.target.files[0]; // get the image
+      this.categoryForm.get('image')?.setValue(file); // set the image to the form
     }
   }
 

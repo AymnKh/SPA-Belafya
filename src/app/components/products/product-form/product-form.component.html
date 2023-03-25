@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h5
+        class="display-3 lead text-center text-danger fw-bolder text-capitalize"
+      >
+        add new product
+      </h5>
+      <form [formGroup]="productForm" (ngSubmit)="addProduct()">
+        <select
+          class="form-select form-select-lg mb-3"
+          aria-label=".form-select-lg example"
+          (change)="chooseCategory($event)"
+        >
+          <option selected>select category</option>
+          <option *ngFor="let category of categories" [value]="category._id">
+            {{ category.name }}
+          </option>
+        </select>
+
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="name"
+            formControlName="name"
+          />
+          <label for="categoryName">Product Name</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="categoryName"
+            placeholder="name in arabic"
+            formControlName="name_ar"
+          />
+          <label for="categoryName">Product Name Arabic</label>
+        </div>
+        <select
+          class="form-select form-select-lg mb-3"
+          aria-label=".form-select-lg example"
+          (change)="chooseSize($event)"
+        >
+          <option selected>select all product sizes</option>
+          <option *ngFor="let size of sizes" [value]="size._id">
+            {{ size.name }}
+          </option>
+        </select>
+
+        <select
+          class="form-select form-select-lg mb-3"
+          aria-label=".form-select-lg example"
+          (change)="chooseHead($event)"
+        >
+          <option selected>select all product heads</option>
+          <option *ngFor="let head of heads" [value]="head._id">
+            {{ head.name }}
+          </option>
+        </select>
+
+        <select
+          class="form-select form-select-lg mb-3"
+          aria-label=".form-select-lg example"
+          (change)="chooseCutting($event)"
+        >
+          <option selected>select all product cuttings</option>
+          <option *ngFor="let cutting of cuttings" [value]="cutting._id">
+            {{ cutting.name }}
+          </option>
+        </select>
+
+        <div class="form-outline mb-4 mt-5">
+          <label class="form-label text-primary" for="image">
+            choose image</label
+          >
+          <input
+            type="file"
+            id="image"
+            class="form-control"
+            accept="image/*"
+            (change)="imageUpload($event)"
+          />
+          <button class="btn btn-lh btn-outline-primary mt-5" type="submit">
+            Add Product
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

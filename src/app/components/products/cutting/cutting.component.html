@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+        <h3 class="text-center text-danger fw-bold">3-Cutting</h3>
+      <form [formGroup]="cuttingForm" (ngSubmit)="addCutting()">
+        <div>
+          <label for="exampleFormControlInput1" class="form-label"
+            >Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+           placeholder="size name"
+           formControlName="name"
+          />
+        </div>
+        <div>
+          <label for="exampleFormControlInput1" class="form-label"
+            >Name in arabic</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            placeholder="size name in arabic"
+            formControlName="name_ar"
+          />
+        </div>
+        <button class="btn btn-primary mt-2" type="submit">Add Cutting</button>
+      
+      </form>
+        <button class="btn btn-danger mt-2 next" (click)="goToProductImageAndName()">Next</button>
+    </div>
+  </div>
+</div>

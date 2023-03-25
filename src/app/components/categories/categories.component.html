@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
-      <h5 class="display-3 lead text-center text-info">Categories</h5>
+      <h5 class="display-3 lead text-center text-danger fw-bolder">Categories</h5>
       <form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
         <div class="form-floating mb-3">
           <input
@@ -53,8 +53,8 @@
             class="img-thumbnail slider-image ms-3 mt-3"
             alt="slider image"
           />
-          <h3 class="text-primary lead display-6">{{ cat.name.en}}</h3>
-          <h3 class="text-primary lead display-6">{{ cat.name.ar}}</h3>
+          <h3 class="text-primary lead display-6">{{ cat.name}}</h3>
+          <h3 class="text-primary lead display-6">{{ cat.name_ar}}</h3>
           <button
             class="btn btn-danger btn-delete mt-2 d-block"
             (click)="deleteCategory(cat._id)"

@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <p class="lead text-capitalize text-center text-danger">to add product first add product sizes then head and cuttings</p>
+        <h3 class="text-center text-danger fw-bold">1-Sizes</h3>
+      <form [formGroup]="sizeForm" (ngSubmit)="addSize()">
+        <div>
+          <label for="exampleFormControlInput1" class="form-label"
+            >Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+           placeholder="size name"
+           formControlName="name"
+          />
+        </div>
+        <div>
+          <label for="exampleFormControlInput1" class="form-label"
+            >Name in arabic</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            placeholder="size name in arabic"
+            formControlName="name_ar"
+          />
+        </div>
+        <div>
+          <label for="exampleFormControlInput1" class="form-label"
+            >price in ksa</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            placeholder="price in KSA"
+            formControlName="price_ksa"
+          />
+        </div>
+        <div>
+          <label for="exampleFormControlInput1" class="form-label"
+            >price in uae</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            placeholder="price in UAE"
+            formControlName="price_uae"
+          />
+        </div>
+        <button class="btn btn-primary mt-2" type="submit">Add Size</button>
+  
+      </form>
+            <button class="btn btn-danger mt-2 next" (click)="goToHead()">Next</button>
+    </div>
+  </div>
+</div>

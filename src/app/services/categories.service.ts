@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environemnts';
 import { Category } from './../model/category-model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -11,24 +12,22 @@ export class CategoriesService {
   constructor(private http: HttpClient) { }
 
   addCategory(category: FormData) {
-    return this.http.post('http://localhost:3000/api/v1/categories/add', category);
+    return this.http.post(`${environment.apiUrl}/categories/add`, category);
   }
 
   getAllCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>('http://localhost:3000/api/v1/categories', {
+    return this.http.get<Category[]>(`${environment.apiUrl}/categories`, {
       headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
         'accept-language': ''
       }
     });
   }
 
   deleteCategoryById(id: string) {
-    return this.http.delete(`http://localhost:3000/api/v1/categories/${id}`);
+    return this.http.delete(`${environment.apiUrl}/categories/${id}`);
   }
 
   deleteAllCategories() {
-    return this.http.delete('http://localhost:3000/api/v1/categories');
+    return this.http.delete(`${environment.apiUrl}/categories`);
   }
 }
