@@ -1,0 +1,7 @@
+.accordion-button:not(.collapsed) {
+  color: whitesmoke !important;
+  background-color: black !important;
+}
+.accordion-button:not(.collapsed)::after {
+  background-image: none !important;
+}

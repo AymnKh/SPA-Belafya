@@ -1,7 +1,4 @@
-.slider-image{
-  height: 18rem;
-  width: 18rem;
-}
-.btn-delete{
-  margin: auto;
+.card img{
+  height: 255px;
+  width: 100%;
 }

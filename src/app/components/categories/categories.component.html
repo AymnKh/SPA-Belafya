@@ -1,76 +1,117 @@
 <div class="container">
   <div class="row">
+    <h1 class="fw-bolder text-center mb-2">Categories</h1>
     <div class="col-sm-12">
-      <h5 class="display-3 lead text-center text-danger fw-bolder">Categories</h5>
-      <form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
-        <div class="form-floating mb-3">
-          <input
-            type="text"
-            class="form-control"
-            id="categoryName"
-            placeholder="name"
-            formControlName="name"
-          />
-          <label for="categoryName">Category Name</label>
-        </div>
-        <div class="form-floating mb-3">
-          <input
-            type="text"
-            class="form-control"
-            id="categoryName"
-            placeholder="name"
-            formControlName="name_ar"
-          />
-          <label for="categoryName">Category Name Arabic</label>
-        </div>
-        <div class="form-outline mb-4 mt-5">
-          <label class="form-label text-primary" for="image">
-            choose image</label
-          >
-          <input
-            type="file"
-            id="image"
-            class="form-control"
-            accept="image/*"
-            (change)="imageUpload($event)"
-          />
-          <button
-            class="btn btn-lh btn-outline-primary mt-5"
-            type="submit"
-            [disabled]="!categoryForm.valid"
+      <div class="accordion" id="accordionCategories">
+        <div class="accordion-item">
+          <p
+            class="accordion-header accordion-button fw-bolder"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseOne"
+            aria-expanded="true"
+            aria-controls="collapseOne"
           >
             Add Category
-          </button>
-        </div>
-      </form>
-      <div class="text-center" *ngIf="Categories.length > 0">
-        <h6 class="text-center mt-5 text-capitalize display-5 text-primary">
-          current categories
-        </h6>
-        <div class="d-inline-block" *ngFor="let cat of Categories">
-          <img
-            src="{{ cat.image }}"
-            class="img-thumbnail slider-image ms-3 mt-3"
-            alt="slider image"
-          />
-          <h3 class="text-primary lead display-6">{{ cat.name}}</h3>
-          <h3 class="text-primary lead display-6">{{ cat.name_ar}}</h3>
-          <button
-            class="btn btn-danger btn-delete mt-2 d-block"
-            (click)="deleteCategory(cat._id)"
+          </p>
+          <div
+            id="collapseOne"
+            class="accordion-collapse collapse show"
+            data-bs-parent="#accordionCategories"
           >
-            Delete
-          </button>
+            <div class="accordion-body">
+              <form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="categoryName"
+                    formControlName="name"
+                  />
+                  <label for="categoryName">Category Name</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="categoryNameArabic"
+                    formControlName="name_ar"
+                  />
+                  <label for="categoryName">Category Name In Arabic</label>
+                </div>
+                <div class="form-outline mb-3 mt-3">
+                  <label class="form-label" for="image"> choose image</label>
+                  <input
+                    type="file"
+                    id="image"
+                    class="form-control"
+                    accept="image/*"
+                    (change)="imageUpload($event)"
+                  />
+                  <button
+                    class="btn btn-lg btn-outline-primary mt-2"
+                    type="submit"
+                    [disabled]="!categoryForm.valid"
+                  >
+                    Add Category
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="text-center">
-        <button
-          class="btn btn-danger mt-5"
-          *ngIf="Categories.length > 0"
-          (click)="deleteAllCategories()"
-        >
-          Delete All
-        </button>
+        <div class="accordion-item">
+          <p
+            class="accordion-header accordion-button collapsed fw-bolder"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseTwo"
+            aria-expanded="false"
+            aria-controls="collapseTwo"
+          >
+            Current Categories
+          </p>
+          <div
+            id="collapseTwo"
+            class="accordion-collapse collapse"
+            data-bs-parent="#accordionCategories"
+          >
+            <div class="row">
+              <div
+                class="col-sm-12 col-md-6 col-lg-3"
+                *ngFor="let cat of Categories"
+              >
+                <div class="card">
+                  <img
+                    src="{{ cat.image }}"
+                    class="img-thumbnail"
+                    alt="slider image"
+                  />
+                  <div class="text-center">
+                    <p class="text-dark fw-bolder lead">{{ cat.name }}</p>
+                    <p class="text-dark fw-bolder lead">{{ cat.name_ar }}</p>
+                  </div>
+                  <button
+                    class="btn btn-danger"
+                    (click)="deleteCategory(cat._id)"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+              <div class="text-center">
+                <button
+                  class="btn btn-danger mt-5"
+                  *ngIf="Categories.length > 0"
+                  (click)="deleteAllCategories()"
+                >
+                  Delete All
+                </button>
+              </div>
+                  <h6 class="text-center text-danger mt-2" *ngIf="Categories.length == 0 ">No Categories !!</h6>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

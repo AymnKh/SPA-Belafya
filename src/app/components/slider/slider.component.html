@@ -1,54 +1,110 @@
 <div class="container">
   <div class="row">
+    <h1 class="fw-bolder text-center mb-2">Sliders</h1>
     <div class="col-sm-12">
-      <h5 class="display-3 lead text-center text-danger fw-bolder">
-        Slider Images
-      </h5>
-      <div class="form-outline mb-4 text-center mt-5">
-        <label class="form-label text-success text-center" for="imageUrl">
-          choose image</label
-        >
-        <input
-          type="file"
-          id="imageUrl"
-          class="form-control"
-          accept="image/*"
-          (change)="imageUpload($event)"
-        />
-        <button
-          class="btn btn-lh btn-outline-primary mt-5"
-          (click)="upload()"
-          [disabled]="!imageUrl.value"
-        >
-          Upload
-        </button>
-      </div>
-      <div class="text-center" *ngIf="slider.length != 0">
-        <h6 class="text-center mt-5 text-capitalize display-5 text-primary">
-          current images
-        </h6>
-        <div *ngFor="let image of slider" class="d-inline-block">
-          <img
-            src="{{ image!.imageUrl }}"
-            class="img-thumbnail slider-image ms-3 mt-3"
-            alt="slider image"
-          />
-          <button
-            class="btn btn-danger btn-delete mt-2 d-block"
-            (click)="deleteImage(image._id)"
+      <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <p 
+              class="accordion-header accordion-button fw-bolder"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseOne"
+              aria-expanded="true"
+              aria-controls="collapseOne"
+            >
+             Add Slider Images
+        </p>
+          <div
+            id="collapseOne"
+            class="accordion-collapse collapse show"
+            data-bs-parent="#accordionExample"
           >
-            Delete
-          </button>
+            <div class="accordion-body">
+              <div class="form-outline mb-4 text-center mt-5">
+                <h4
+                  class="text-center mt-5 text-capitalize display-5 text-dark"
+                >
+                  upload slider images
+                </h4>
+                <label class="form-label text-dark text-center" for="imageUrl">
+                  choose image</label
+                >
+                <input
+                  type="file"
+                  id="imageUrl"
+                  class="form-control"
+                  accept="image/*"
+                  (change)="imageUpload($event)"
+                />
+                <button
+                  class="btn btn-lh btn-outline-dark mt-5"
+                  (click)="upload()"
+                  [disabled]="!imageUrl.value"
+                >
+                  Upload
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="text-center">
-        <button
-          class="btn btn-danger mt-5"
-          *ngIf="slider.length != 0"
-          (click)="deleteAllSliderImages()"
-        >
-          Delete All
-        </button>
+        <div class="accordion-item">
+          <p 
+              class="accordion-header accordion-button collapsed fw-bolder"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseTwo"
+              aria-expanded="false"
+              aria-controls="collapseTwo"
+            >
+             Current slider images
+           
+          </p>
+          <div
+            id="collapseTwo"
+            class="accordion-collapse collapse"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body">
+              <div class="text-center" *ngIf="slider.length != 0">
+                <h6
+                  class="text-center mt-5 text-capitalize display-5 text-dark"
+                >
+                  current slider images
+                </h6>
+                <div class="row">
+                  <div
+                    class="col-sm-12 col-md-6 col-lg-3"
+                    *ngFor="let image of slider"
+                  >
+                    <div class="card">
+                      <img
+                        src="{{ image!.imageUrl }}"
+                        class="img-thumbnail img-fluid"
+                        alt="slider image"
+                      />
+                      <button
+                        class="btn btn-danger"
+                        (click)="deleteImage(image._id)"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button
+                    class="btn btn-danger mt-5"
+                    *ngIf="slider.length != 0"
+                    (click)="deleteAllSliderImages()"
+                  >
+                    Delete All
+                  </button>
+                </div>
+              </div>
+              <h6 class="text-center text-danger " *ngIf="slider.length == 0 ">No Sliders !!</h6>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
