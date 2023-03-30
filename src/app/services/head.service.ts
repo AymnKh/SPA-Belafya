@@ -19,4 +19,12 @@ export class HeadService {
   getAllHeads(): Observable<Head[]> {
     return this.http.get<Head[]>(`${environment.apiUrl}/head/all`);
   }
+
+  deleteHead(id: string) {
+    return this.http.delete(`${environment.apiUrl}/head/${id}`);
+  }
+
+  deleteAll() {
+    return this.http.delete(`${environment.apiUrl}/head/all`);
+  }
 }

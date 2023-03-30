@@ -92,15 +92,15 @@ export class ProductFormComponent implements OnInit {
 
   chooseHead(event: any) {
     this.headIds.push(event.target.value);
-    const res = _.remove(this.heads, ['_id', event.target.value]); // remove the size from the sizes array
+    _.remove(this.heads, ['_id', event.target.value]); // remove the size from the sizes array
     const ids = this.headIds.join(','); // join the sizes ids to a string
     this.productForm.get('head')?.setValue(ids); // set the sizes to the form
   }
 
   chooseCutting(event: any) {
     this.cuttingIds.push(event.target.value);
+    _.remove(this.cuttings, ['_id', event.target.value]);
     const ids = this.cuttingIds.join(',');
-    console.log(ids);
     this.productForm.get('cutting')?.setValue(ids);
   }
 

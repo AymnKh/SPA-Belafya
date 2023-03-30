@@ -1,3 +1,4 @@
+import { AllProductsComponent } from './all-products/all-products.component';
 import { CuttingComponent } from './cutting/cutting.component';
 import { SizesComponent } from './sizes/sizes.component';
 import { HeadComponent } from './head/head.component';
@@ -28,6 +29,10 @@ const routes: Routes = [
   {
     path: 'add',
     component:ProductFormComponent
+  },
+  {
+    path: 'all',
+    component:AllProductsComponent
   }
 ];
 

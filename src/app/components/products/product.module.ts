@@ -8,6 +8,8 @@ import { SizesComponent } from './sizes/sizes.component';
 import { HeadComponent } from './head/head.component';
 import { CuttingComponent } from './cutting/cutting.component';
 import { ProductFormComponent } from './product-form/product-form.component';
+import { AllProductsComponent } from './all-products/all-products.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { ProductFormComponent } from './product-form/product-form.component';
     SizesComponent,
     HeadComponent,
     CuttingComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    AllProductsComponent,
+    ProductDetailsComponent
   ],
   imports: [
     CommonModule,

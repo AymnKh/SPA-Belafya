@@ -12,11 +12,12 @@ import { Router } from '@angular/router';
 export class SizesComponent implements OnInit {
 
   sizeForm!: FormGroup;
-  sizezIds: string[] = [];
+  sizes: Size[] = [];
   constructor(private sizesService: SizesService, private router: Router) { }
 
   ngOnInit(): void {
     this.formInit();  // call formInit method
+    this.getAllSizes(); // call getAllSizes method
   }
   formInit() {
     this.sizeForm = new FormGroup({ // create new form group
@@ -26,19 +27,52 @@ export class SizesComponent implements OnInit {
       "price_ksa": new FormControl('', Validators.required),
     })
   }
-
   addSize() {
-    this.sizesService.addSize(this.sizeForm.value).subscribe((res: Size) => { // call addSize method 
-      this.sizezIds.push(res._id); // push size id to sizezIds array
-      let ids = this.sizezIds.join(','); // join sizezIds array to string
-      this.sizesService.sizesId.next(ids); // send sizezIds array to sizesId subject
-      this.sizeForm.reset(); // reset form
+    this.sizesService.addSize(this.sizeForm.value).subscribe({
+      next: (data: any) => {
+        this.sizeForm.reset(); // reset form
+        this.getAllSizes(); // call getAllSizes method
+        console.log(data);
+      },
+      error: (error: any) => {
+        alert(error.message);
+      },
     })
   }
-
-  goToHead() {
-    this.router.navigate(['products','head']);
+  getAllSizes() {
+    this.sizesService.getAllSizes().subscribe({
+      next: (data: any) => {
+        this.sizes = data; // assign data to sizes array
+      },
+      error: (error: any) => {
+        alert(error.message);
+      },
+    })
   }
-
+  deleteSize(id:string) {
+    this.sizesService.deleteSize(id).subscribe({
+      next: (data: any) => {
+        this.getAllSizes(); // call getAllSizes method
+        console.log(data);
+      },
+      error: (error: any) => {
+        alert(error.message);
+      },
+    })
+  }
+  deleteAll() {
+    this.sizesService.deleteAll().subscribe({
+      next: (data: any) => {
+        this.getAllSizes(); // call getAllSizes method
+        console.log(data);
+      },
+      error: (error: any) => {
+        alert(error.message);
+      },
+    })
+  }
+  back() {
+    this.router.navigate(['/products']); // navigate to products page
+  }
 
 }

@@ -1,7 +1,7 @@
 export interface Size {
     name: string
     name_ar: string
-    price_su: number
-    price_em: number
+    price_ksa: number
+    price_uae: number
     _id: string
 }

@@ -20,4 +20,12 @@ export class CuttingService {
   getAllCuttings(): Observable<Cutting[]> {
     return this.http.get<Cutting[]>(`${environment.apiUrl}/cutting/all`);
   }
+
+  deleteCutting(id: string) {
+    return this.http.delete(`${environment.apiUrl}/cutting/${id}`);
+  }
+
+  deleteAll() {
+    return this.http.delete(`${environment.apiUrl}/cutting/all`);
+  }
 }
