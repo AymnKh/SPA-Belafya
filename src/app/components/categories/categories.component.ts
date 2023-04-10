@@ -13,7 +13,7 @@ import { Component, OnInit } from '@angular/core';
 export class CategoriesComponent implements OnInit {
 
   categoryForm!: FormGroup;
-  Categories: Category[] = [];
+  categories: Category[] = [];
   constructor(private categoriesService: CategoriesService) { }
   ngOnInit(): void {
     this.formInit(); // initialize the form
@@ -34,7 +34,8 @@ export class CategoriesComponent implements OnInit {
     }));
     this.categoriesService.addCategory(categoryFormData).subscribe({ // send the form data to the backend
       next: (data) => {
-        location.reload(); // reload the page
+        this.getAllCategories(); // get all categories 
+        this.categoryForm.reset(); //reset form
       },
       error: (err) => {
         alert(err.message) // log the error
@@ -45,7 +46,7 @@ export class CategoriesComponent implements OnInit {
   getAllCategories() {
     this.categoriesService.getAllCategories().subscribe({ // get all categories
       next: (data) => {
-        this.Categories = data; // assign the data to the categories array
+        this.categories = data; // assign the data to the categories array
       },
       error: (err) => {
         alert(err) // log the error

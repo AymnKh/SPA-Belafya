@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3 mt-2">
+      <div class="list-group">
+        <a
+          class="list-group-item list-group-item-action text-capitalize "
+          [ngClass]="adding?'active':''"
+        (click)="adding = !adding"
+        >
+          Add new sub category
+        </a>
+        <a class="list-group-item list-group-item-action text-capitalize"
+         [ngClass]="adding?'':'active'"
+        (click)="adding = !adding"
+          >current sub categories</a
+        >
+      </div>
+    </div>
+    <div *ngIf="adding " class="col-sm-9">
+      <form [formGroup]="subCategoriesForm" (ngSubmit)="addSubCategory()">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="name"
+            id="name"
+            name="name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Name in arabic</label>
+          <input
+            type="email"
+            class="form-control"
+            formControlName="name_ar"
+            id="email"
+            name="email"
+          />
+        </div>
+        <div class="form-group">
+          <label for="category">Category</label>
+          <select
+            class="form-control"
+            id="category"
+            name="category"
+            (change)="chooseCategory($event)"
+          >
+            <option *ngFor="let cat of categories" [value]="cat._id">
+              {{ cat.name }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="gender">Products</label>
+          <select
+            class="form-control"
+            id="gender"
+            name="gender"
+            (change)="chooseProdut($event)"
+          >
+            <option *ngFor="let product of products" [value]="product._id">
+              {{ product.name }}
+            </option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-lg btn-dark mt-2">Submit</button>
+      </form>
+    </div>
+    <ng-container *ngIf="!adding" >
+      <div
+        class="col-sm-12 col-md-6 col-lg-3 offset-lg-3 offset-m6-3 mt-2"
+        *ngFor="let subCat of subCategories"
+      >
+        <div class="card">
+          <div class="text-center">
+            <p class="text-dark fw-bolder lead">{{ subCat.name }}</p>
+            <p class="text-dark fw-bolder lead">{{ subCat.name_ar }}</p>
+          </div>
+          <button class="btn btn-danger" (click)="deleteCategory(subCat._id)">
+            Delete
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

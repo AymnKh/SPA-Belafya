@@ -79,7 +79,7 @@
             <div class="row">
               <div
                 class="col-sm-12 col-md-6 col-lg-3"
-                *ngFor="let cat of Categories"
+                *ngFor="let cat of categories"
               >
                 <div class="card">
                   <img
@@ -102,13 +102,13 @@
               <div class="text-center">
                 <button
                   class="btn btn-danger mt-5"
-                  *ngIf="Categories.length > 0"
+                  *ngIf="categories.length > 0"
                   (click)="deleteAllCategories()"
                 >
                   Delete All
                 </button>
               </div>
-                  <h6 class="text-center text-danger mt-2" *ngIf="Categories.length == 0 ">No Categories !!</h6>
+                  <h6 class="text-center text-danger mt-2" *ngIf="categories.length == 0 ">No Categories !!</h6>
             </div>
           </div>
         </div>
