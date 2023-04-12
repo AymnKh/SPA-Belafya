@@ -13,10 +13,6 @@ const routes: Routes = [
   {
     path: 'sub-categories',
     loadChildren: () => import('./components/sub-categories/sub-categories.module').then(m => m.SubCategoriesModule)
-  },
-  {
-    path: 'products',
-    loadChildren: () => import('./components/products/product.module').then(m => m.ProductModule)
   }
 ];
 

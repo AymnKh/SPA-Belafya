@@ -42,7 +42,6 @@ export class CategoriesComponent implements OnInit {
       }
     });
   }
-
   getAllCategories() {
     this.categoriesService.getAllCategories().subscribe({ // get all categories
       next: (data) => {
@@ -53,11 +52,10 @@ export class CategoriesComponent implements OnInit {
       }
     });
   }
-
   deleteCategory(id: string) {
     this.categoriesService.deleteCategoryById(id).subscribe({ // delete category by id
       next: (data) => {
-        location.reload(); // reload the page
+        this.getAllCategories(); // get all categories after delete
       },
       error: (err) => {
         console.log(err) // log the error
@@ -67,7 +65,7 @@ export class CategoriesComponent implements OnInit {
   deleteAllCategories() {
     this.categoriesService.deleteAllCategories().subscribe({ // delete all categories
       next: (data) => {
-        location.reload(); // reload the page
+        this.getAllCategories(); // get all categories after delete
       },
       error: (err) => { // log the error
         console.log(err)
@@ -80,6 +78,4 @@ export class CategoriesComponent implements OnInit {
       this.categoryForm.get('image')?.setValue(file); // set the image to the form
     }
   }
-
-
 }

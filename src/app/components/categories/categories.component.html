@@ -21,25 +21,28 @@
           >
             <div class="accordion-body">
               <form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
-                <div class="form-floating mb-3">
+                <!-- category name in en -->
+                <div class="form-group mb-3">
+                  <label for="categoryName">Category Name</label>
                   <input
                     type="text"
                     class="form-control"
                     id="categoryName"
                     formControlName="name"
                   />
-                  <label for="categoryName">Category Name</label>
                 </div>
-                <div class="form-floating mb-3">
+                <!-- category name in ar -->
+                <div class="form-group mb-3">
+                  <label for="categoryName">Category Name In Arabic</label>
                   <input
                     type="text"
                     class="form-control"
                     id="categoryNameArabic"
                     formControlName="name_ar"
                   />
-                  <label for="categoryName">Category Name In Arabic</label>
                 </div>
-                <div class="form-outline mb-3 mt-3">
+                <!-- image upload -->
+                <div class="form-group mb-3 mt-3">
                   <label class="form-label" for="image"> choose image</label>
                   <input
                     type="file"
@@ -77,10 +80,7 @@
             data-bs-parent="#accordionCategories"
           >
             <div class="row">
-              <div
-                class="col-sm-12 col-md-6 col-lg-3"
-                *ngFor="let cat of categories"
-              >
+              <div class="offset-sm-3 col-sm-6" *ngFor="let cat of categories">
                 <div class="card">
                   <img
                     src="{{ cat.image }}"
@@ -88,8 +88,12 @@
                     alt="slider image"
                   />
                   <div class="text-center">
-                    <p class="text-dark fw-bolder lead">{{ cat.name }}</p>
-                    <p class="text-dark fw-bolder lead">{{ cat.name_ar }}</p>
+                    <p class="text-dark fw-bolder lead">
+                      name : {{ cat.name }}
+                    </p>
+                    <p class="text-dark fw-bolder lead">
+                      الاسم: {{ cat.name_ar }}
+                    </p>
                   </div>
                   <button
                     class="btn btn-danger"
@@ -108,7 +112,12 @@
                   Delete All
                 </button>
               </div>
-                  <h6 class="text-center text-danger mt-2" *ngIf="categories.length == 0 ">No Categories !!</h6>
+              <h6
+                class="text-center fw-bolder text-danger mt-2"
+                *ngIf="categories.length == 0"
+              >
+                No Categories !!
+              </h6>
             </div>
           </div>
         </div>
