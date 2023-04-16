@@ -62,6 +62,7 @@ export class SubCategoriesComponent implements OnInit {
     this.subCategoriesService.getAllSubCategories().subscribe({
       next: (data) => {
         this.subCategories = data;
+        console.log(data);
       },
       error: (err) => {
         alert(err.message)

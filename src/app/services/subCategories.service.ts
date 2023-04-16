@@ -18,6 +18,6 @@ constructor(private http:HttpClient) { }
   }
 
   getAllSubCategories(): Observable<SubCategory[]>{
-    return this.http.get<SubCategory[]>(`${environment.apiUrl}/sub-categories/get`);
+    return this.http.get<SubCategory[]>(`${environment.apiUrl}/sub-categories/all`);
   }
 }

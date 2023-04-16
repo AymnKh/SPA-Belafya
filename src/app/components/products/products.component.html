@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <a class="btn btn-lg btn-dark m-4" routerLink="new">add new product</a>
+            <h3 class="text-center text-capitalize fw-bolder title">all products</h3>
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>name</th>
+                        <th>name_ar</th>
+                        <th>image</th>
+                        <th>eidt</th>
+                        <th>delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of products">
+                        <td></td>
+                        <td >{{product.name}}</td>
+                        <td >{{product.name_ar}}</td>
+                        <td >
+                            <img class="rounded-4 avatar" [src]="product.image" alt="">
+                        </td>
+                        <td>
+                            <a class="btn btn-success" [routerLink]="product._id">edit</a>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger" (click)="deleteProduct(product._id)">delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

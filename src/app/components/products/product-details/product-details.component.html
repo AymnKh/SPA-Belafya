@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-9">
+      <form (ngSubmit)="print(f)" #f>
+        <div class="form-group">
+          <label for="name">name</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            class="form-control"
+            [(ngModel)]="product.name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="name">name in arabic</label>
+          <input
+            type="text"
+            name="name_ar"
+            id="name_ar"
+            class="form-control"
+            [(ngModel)]="product.name_ar"
+          />
+        </div>
+        <!-- sizes -->
+        <h3 class="text-bg-success text-center text-capitalize mt-2">sizes</h3>
+        <div class="form-group" *ngFor="let item of product.sizes">
+          <label for="name">name in arabic</label>
+          <input
+            type="text"
+            name="name_ar"
+            id="name_ar"
+            class="form-control"
+            [(ngModel)]="item.name_ar"
+          />
+          <label for="name">name </label>
+          <input
+            type="text"
+            name="name_ar"
+            id="name_ar"
+            class="form-control"
+            [(ngModel)]="item.name"
+          />
+          <label for="name">price</label>
+          <input
+            type="text"
+            name="name_ar"
+            id="name_ar"
+            class="form-control"
+            [(ngModel)]="item.price"
+          />
+          <br />
+        </div>
+        <!-- head -->
+        <h3 class="text-bg-success text-center text-capitalize mt-2">heads</h3>
+        <div class="form-group" *ngFor="let item of product.head">
+          <label for="name">name in arabic</label>
+          <input
+            type="text"
+            name="name_ar"
+            id="name_ar"
+            class="form-control"
+            [(ngModel)]="item.name_ar"
+          />
+          <label for="name">name </label>
+          <input
+            type="text"
+            name="name_ar"
+            id="name_ar"
+            class="form-control"
+            [(ngModel)]="item.name"
+          />
+          <br />
+        </div>
+        <button class="btn btn-info">a</button>
+      </form>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-3">
+      <img [src]="product.image" class="w-100" alt="" />
+    </div>
+  </div>
+</div>
