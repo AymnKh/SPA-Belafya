@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h1 class="fw-bolder text-center mb-2">Sliders</h1>
+    <h1 class="fw-bolder text-center text-dark mb-2">Sliders</h1>
     <div class="col-sm-12">
       <div class="accordion" id="accordion">
         <div class="accordion-item">
@@ -14,6 +14,9 @@
           >
             Add Slider Images
           </p>
+          <div class="text-center mt-2" *ngIf="loading">
+            <app-loading></app-loading>
+          </div>
           <div
             id="collapseOne"
             class="accordion-collapse collapse show"
@@ -37,7 +40,7 @@
                   (change)="imageUpload($event)"
                 />
                 <button
-                  class="btn btn-lh btn-outline-dark mt-5"
+                  class="btn btn-lh btn-outline-info mt-5"
                   (click)="upload()"
                   [disabled]="!imageUrl.value"
                 >
@@ -47,6 +50,7 @@
             </div>
           </div>
         </div>
+
         <div class="accordion-item">
           <p
             class="accordion-header accordion-button collapsed fw-bolder"
@@ -74,13 +78,13 @@
                   <div class="col-sm-12 mt-2" *ngFor="let image of slider">
                     <div class="card">
                       <img
-                        src="{{ image!.imageUrl }}"
+                        src="{{ image.imageUrl }}"
                         class="img-thumbnail img-fluid"
                         alt="slider image"
                       />
                     </div>
                     <button
-                      class="btn btn-danger"
+                      class="btn btn-dark"
                       (click)="deleteImage(image._id)"
                     >
                       Delete
@@ -89,7 +93,7 @@
                 </div>
                 <div class="text-end">
                   <button
-                    class="btn btn-danger mt-5"
+                    class="btn btn-dark mt-5"
                     *ngIf="slider.length != 0"
                     (click)="deleteAllSliderImages()"
                   >
@@ -97,7 +101,7 @@
                   </button>
                 </div>
               </div>
-              <h6 class="text-center text-danger" *ngIf="slider.length == 0">
+              <h6 class="text-center text-dark" *ngIf="slider.length == 0">
                 No Sliders !!
               </h6>
             </div>

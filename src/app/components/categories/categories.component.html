@@ -52,7 +52,7 @@
                     (change)="imageUpload($event)"
                   />
                   <button
-                    class="btn btn-lg btn-outline-primary mt-2"
+                    class="btn btn-lg btn-outline-info mt-2"
                     type="submit"
                     [disabled]="!categoryForm.valid"
                   >
@@ -96,7 +96,7 @@
                     </p>
                   </div>
                   <button
-                    class="btn btn-danger"
+                    class="btn btn-dark"
                     (click)="deleteCategory(cat._id)"
                   >
                     Delete
@@ -105,7 +105,7 @@
               </div>
               <div class="text-center">
                 <button
-                  class="btn btn-danger mt-5"
+                  class="btn btn-dark mt-5"
                   *ngIf="categories.length > 0"
                   (click)="deleteAllCategories()"
                 >
@@ -113,7 +113,7 @@
                 </button>
               </div>
               <h6
-                class="text-center fw-bolder text-danger mt-2"
+                class="text-center fw-bolder text-dark mt-2"
                 *ngIf="categories.length == 0"
               >
                 No Categories !!

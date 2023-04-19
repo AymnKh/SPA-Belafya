@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { SliderRoutingModule } from './slider-routing.module';
 import { SliderComponent } from './slider.component';
+import { LoadingComponent } from '../loading/loading.component';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { SliderComponent } from './slider.component';
   ],
   imports: [
     CommonModule,
-    SliderRoutingModule
+    SliderRoutingModule,
+    LoadingComponent
   ]
 })
 export class SliderModule { }

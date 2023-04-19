@@ -21,6 +21,7 @@ export class SubCategoriesComponent implements OnInit {
   products: Product[] = [];
   productsId: string[] = [];
   adding: boolean = true;
+  selectedItems: Product[] = [];
 
   constructor(private categoriesService: CategoriesService, private productsService: ProductsService, private subCategoriesService: SubCategoriesService) { }
   ngOnInit(): void {
@@ -59,37 +60,51 @@ export class SubCategoriesComponent implements OnInit {
     })
   }
   getAllSubCategoris() {
-    this.subCategoriesService.getAllSubCategories().subscribe({
+    this.subCategoriesService.getAllSubCategories().subscribe({ //get all subCategories
       next: (data) => {
-        this.subCategories = data;
+        this.subCategories = data; //assign data to subCategories array
         console.log(data);
       },
       error: (err) => {
-        alert(err.message)
+        alert(err.message) //alret error
       }
     })
   }
   chooseCategory(event: any) {
-    const category = event.target.value;
+    const category = event.target.value; // get choosen category id
     this.subCategoriesForm.get('category')?.setValue(category); // set the category to the form
   }
-  chooseProdut(event: any) {
-    this.productsId.push(event.target.value);
-    _.remove(this.products, ['_id', event.target.value]); // remove the product from the products array
-    const ids = this.productsId.join(','); // join the products ids to a string
-    this.subCategoriesForm.get('products')?.setValue(ids); // set the products to the form
+  chooseProdut() {
+    this.selectedItems.forEach(element => {
+      this.productsId.push(element._id); //push every product id to productsId array
+      const ids = this.productsId.join(','); // join all ids 
+      this.subCategoriesForm.get('products')?.setValue(ids); // set the product to the form
+    })
   }
   addSubCategory() {
-    const subCategory = this.subCategoriesForm.value
-    this.subCategoriesService.addSubCategory(subCategory).subscribe({
+    this.chooseProdut(); // call chooseProduct method
+    const subCategory = this.subCategoriesForm.value //subCategory form value
+    this.subCategoriesService.addSubCategory(subCategory).subscribe({ // add new subCategory
       next: (data) => {
         this.subCategoriesForm.reset();
-        alert('added');
+        alert('added'); // alret add if success
       },
       error: (err) => {
-        console.log(err);
+        console.log(err);//log error
       }
     })
   }
-  deleteCategory(id: string) { }
+  deleteSubCategory(id: string) {
+    this.subCategoriesService.deleteSubCategory(id).subscribe({ // delete subCategory
+      next: (data) => {
+        this.getAllSubCategoris(); // call the method after delete
+      }, error: (err) => {
+        console.log(err); // log error
+      }
+    })
+  }
+  onChange(event: any) {
+    this.selectedItems = event;
+  }
+
 }

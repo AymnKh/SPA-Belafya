@@ -1,3 +1,7 @@
 .active{
     font-weight: bolder;
+    color: #e39e4a !important;
+}
+.nav-item{
+    font-size: 1.3rem;
 }

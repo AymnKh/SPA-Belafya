@@ -20,4 +20,8 @@ constructor(private http:HttpClient) { }
   getAllSubCategories(): Observable<SubCategory[]>{
     return this.http.get<SubCategory[]>(`${environment.apiUrl}/sub-categories/all`);
   }
+
+  deleteSubCategory(id: string) {
+    return this.http.delete(`${environment.apiUrl}/sub-categories/${id}`);
+  }
 }

@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { SubCategoriesRoutingModule } from './sub-categories-routing.module';
 import { SubCategoriesComponent } from './sub-categories.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -13,7 +14,9 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     SubCategoriesRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgSelectModule,
+    FormsModule
   ]
 })
 export class SubCategoriesModule { }

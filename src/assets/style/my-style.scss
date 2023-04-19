@@ -1,0 +1,37 @@
+$dark: #8a3135;
+$info:#e39e4a;
+$theme-colors: (
+  "dark": $dark,
+  "info":$info
+);
+@import "node_modules/bootstrap/scss/bootstrap.scss";
+.accordion-button:not(.collapsed) {
+  color: $dark;
+  background-color: $info;
+}
+.accordion-button.collapsed {
+  color: $info;
+  background-color:$dark ;
+}
+.accordion-button:not(.collapsed)::after {
+  background-image: none;
+}
+.ng-dropdown-panel .ng-option {
+  padding: 0.375rem 0.75rem;
+  color: white;
+  background-color: $info;
+  border: 1px solid #ced4da;
+}
+.form-control {
+  background-color: $dark;
+  color: $info ;
+}
+.form-control:focus {
+  box-shadow: none ;
+  border-color: $info;
+}
+.form-group label {
+  color:$dark ;
+  font-family: "ChivoMono" ;
+}
+

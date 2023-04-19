@@ -1,4 +1,10 @@
-.list-group-item.active{
-    background-color: #343a40 ;
-    border-color:#343a40
+.list-group-item.active {
+  background-color: #e39e4a;
+  border-color: #e39e4a;
+  color: #8a3135;
+}
+.list-group-item:not(.active) {
+  background-color: #8a3135;
+  border-color: #e39e4a;
+  color: #e39e4a;
 }

@@ -11,11 +11,12 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 export class SliderComponent {
   slider: Slider[] = [];
   imageUrl!: FormControl;
+  loading: boolean = false;
   constructor(private sliderService: SliderService) {
   }
 
   ngOnInit() {
-    this.imageUrl = new FormControl('', Validators.required)
+    this.imageUrl = new FormControl('', Validators.required) // init from
     this.getAllSliderImages(); // get all slider images
   }
   getAllSliderImages() {
@@ -24,7 +25,7 @@ export class SliderComponent {
         this.slider = data; // assign slider images to slider array
       },
       error: (err) => {
-        alert(err) // show error
+        alert(err.message) // show error
       }
     });
   }
@@ -52,16 +53,17 @@ export class SliderComponent {
     if (event.target.files.length > 0) { // check if file is selected
       const file = event.target.files[0]; // get file
       this.imageUrl.setValue(file); // set file to imageUrl
-
     }
   }
-
-  addNewSlider(slider:FormData) {
+  addNewSlider(slider: FormData) {
+    this.loading = true;
     this.sliderService.addNewSliderImage(slider).subscribe({ // upload image
       next: (data) => {
-        location.reload(); // reload page
+       this.getAllSliderImages() // get all sliders after adding new slider
       }, error: (err) => {
         console.log(err) // show error
+      }, complete: () => {
+        this.loading = false; // loading to false after complete 
       }
     })
   }
