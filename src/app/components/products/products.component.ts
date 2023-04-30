@@ -18,6 +18,7 @@ export class ProductsComponent implements OnInit {
   getAllProducts() {
     this.productsService.getAllProducts().subscribe({ // get all products
       next: (data) => {
+        console.log(data);
         this.products = data; //assign data to products array
       }, error: (err) => {
         console.log(err);

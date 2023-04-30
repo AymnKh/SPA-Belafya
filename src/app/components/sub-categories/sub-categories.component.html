@@ -1,24 +1,28 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-sm-3 mt-2">
-      <div class="list-group">
-        <a
+    <div class="col-sm-12 col-md-6 col-lg-3">
+      <div class="list-group text-capitalize text-center">
+        <button
           class="list-group-item list-group-item-action text-capitalize"
           [ngClass]="adding ? 'active' : ''"
           (click)="adding = !adding"
         >
           Add new sub category
-        </a>
-        <a
+        </button>
+        <button
           class="list-group-item list-group-item-action text-capitalize"
           [ngClass]="adding ? '' : 'active'"
           (click)="adding = !adding"
-          >current sub categories</a
         >
+          current sub categories
+        </button>
       </div>
     </div>
     <!-- sub category form -->
-    <div *ngIf="adding" class="col-sm-9">
+    <div
+      *ngIf="adding"
+      class="col-sm-12 col-md-6 col-lg-9 mt-sm-5 mt-lg-0 mt-md-0"
+    >
       <form [formGroup]="subCategoriesForm" (ngSubmit)="addSubCategory()">
         <!-- name -->
         <div class="form-group">
@@ -75,7 +79,7 @@
     <!-- display all sub categories -->
     <ng-container *ngIf="!adding">
       <div
-        class="col-sm-12 col-md-6 col-lg-3 offset-m6-3 mt-2"
+        class="col-sm-12 col-md-3 col-lg-3 mt-sm-5 mt-lg-0 mt-md-0"
         *ngFor="let subCat of subCategories"
       >
         <div class="card">

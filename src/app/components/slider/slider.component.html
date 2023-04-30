@@ -3,6 +3,7 @@
     <h1 class="fw-bolder text-center text-dark mb-2">Sliders</h1>
     <div class="col-sm-12">
       <div class="accordion" id="accordion">
+        <!-- adding new slider -->
         <div class="accordion-item">
           <p
             class="accordion-header accordion-button fw-bolder"
@@ -50,7 +51,7 @@
             </div>
           </div>
         </div>
-
+        <!-- current sliders -->
         <div class="accordion-item">
           <p
             class="accordion-header accordion-button collapsed fw-bolder"
@@ -62,6 +63,9 @@
           >
             Current slider images
           </p>
+          <div class="text-center mt-2" *ngIf="loadingSpinner">
+            <app-loading></app-loading>
+          </div>
           <div
             id="collapseTwo"
             class="accordion-collapse collapse"

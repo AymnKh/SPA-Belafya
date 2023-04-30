@@ -5,6 +5,7 @@ $theme-colors: (
   "info":$info
 );
 @import "node_modules/bootstrap/scss/bootstrap.scss";
+
 .accordion-button:not(.collapsed) {
   color: $dark;
   background-color: $info;
@@ -15,6 +16,9 @@ $theme-colors: (
 }
 .accordion-button:not(.collapsed)::after {
   background-image: none;
+}
+.accordion-item {
+  background: none;
 }
 .ng-dropdown-panel .ng-option {
   padding: 0.375rem 0.75rem;
@@ -34,4 +38,3 @@ $theme-colors: (
   color:$dark ;
   font-family: "ChivoMono" ;
 }
-

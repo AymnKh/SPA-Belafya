@@ -12,19 +12,19 @@ export class SliderService {
   constructor(private  http:HttpClient) { }
 
 
-  addNewSliderImage(image:FormData){
-    return this.http.post(`${environment.apiUrl}/slider/add`, image)
+  addNewSliderImage(image:FormData):Observable<string>{
+    return this.http.post<string>(`${environment.apiUrl}/slider/add`, image)
   }
 
   getAllSlider():Observable<Slider[]>{
     return this.http.get<Slider[]>(`${environment.apiUrl}/slider/`)
   }
 
-  deleteSlideById(id:string){
-    return this.http.delete(`${environment.apiUrl}/slider/${id}`);
+  deleteSlideById(id: string): Observable<string>{
+    return this.http.delete<string>(`${environment.apiUrl}/slider/${id}`);
   }
 
-  deleteAllSliderImages(){
-    return this.http.delete(`${environment.apiUrl}/slider`);
+  deleteAllSliderImages(): Observable<string>{
+    return this.http.delete<string>(`${environment.apiUrl}/slider`);
   }
 }

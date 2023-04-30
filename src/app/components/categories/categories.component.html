@@ -1,8 +1,9 @@
 <div class="container">
   <div class="row">
-    <h1 class="fw-bolder text-center mb-2">Categories</h1>
+    <h1 class="fw-bolder text-center text-dark mb-2">Categories</h1>
     <div class="col-sm-12">
       <div class="accordion" id="accordionCategories">
+        <!-- add new category -->
         <div class="accordion-item">
           <p
             class="accordion-header accordion-button fw-bolder"
@@ -14,6 +15,9 @@
           >
             Add Category
           </p>
+          <div class="text-center mt-2" *ngIf="loading">
+            <app-loading></app-loading>
+          </div>
           <div
             id="collapseOne"
             class="accordion-collapse collapse show"
@@ -63,6 +67,7 @@
             </div>
           </div>
         </div>
+        <!-- current categories -->
         <div class="accordion-item">
           <p
             class="accordion-header accordion-button collapsed fw-bolder"
@@ -74,21 +79,24 @@
           >
             Current Categories
           </p>
+           <div class="text-center mt-2" *ngIf="loadingSpinner">
+            <app-loading></app-loading>
+          </div>
           <div
             id="collapseTwo"
             class="accordion-collapse collapse"
             data-bs-parent="#accordionCategories"
           >
             <div class="row">
-              <div class="offset-sm-3 col-sm-6" *ngFor="let cat of categories">
+              <div class="col-sm-12 col-md-6 col-lg-4" *ngFor="let cat of categories">
                 <div class="card">
                   <img
-                    src="{{ cat.image }}"
-                    class="img-thumbnail"
+                    src="{{ cat.imageUrl }}"
+                    class="img-thumbnail w-100"
                     alt="slider image"
                   />
                   <div class="text-center">
-                    <p class="text-dark fw-bolder lead">
+                    <p class="text-dark fw-bolder lead text-truncate">
                       name : {{ cat.name }}
                     </p>
                     <p class="text-dark fw-bolder lead">

@@ -1,10 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
-
 @import "./assets/style/my-style.scss";
+@import '~alertifyjs/build/css/alertify.min.css';
 @font-face {
   font-family: "ChivoMono";
   src: url("assets/fonts/ChivoMono-ExtraBold.ttf");
+}
+body{
+  background-image: url('./assets/images/background.jpeg');
+  font-family:"ChivoMono" ;
 }
 
 

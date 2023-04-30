@@ -19,7 +19,6 @@ export class ProductsService {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        // 'country': 'ksa',
         // 'accept-language': 'ar'
       }
     

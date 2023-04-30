@@ -11,23 +11,19 @@ export class CategoriesService {
 
   constructor(private http: HttpClient) { }
 
-  addCategory(category: FormData) {
-    return this.http.post(`${environment.apiUrl}/categories/add`, category);
+  addCategory(category: FormData):Observable<string> {
+    return this.http.post<string>(`${environment.apiUrl}/categories/add`, category);
   }
 
   getAllCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(`${environment.apiUrl}/categories`, {
-      headers: {
-        'accept-language': ''
-      }
-    });
+    return this.http.get<Category[]>(`${environment.apiUrl}/categories`);
+  }
+  
+  deleteCategoryById(id: string): Observable<string> {
+    return this.http.delete<string>(`${environment.apiUrl}/categories/${id}`);
   }
 
-  deleteCategoryById(id: string) {
-    return this.http.delete(`${environment.apiUrl}/categories/${id}`);
-  }
-
-  deleteAllCategories() {
-    return this.http.delete(`${environment.apiUrl}/categories`);
+  deleteAllCategories(): Observable<string> {
+    return this.http.delete<string>(`${environment.apiUrl}/categories`);
   }
 }

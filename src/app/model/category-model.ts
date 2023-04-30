@@ -1,6 +1,6 @@
 export interface Category {
     _id: string
-    image: string
+    imageUrl: string
     name: string
     name_ar: string
     createdAt: string

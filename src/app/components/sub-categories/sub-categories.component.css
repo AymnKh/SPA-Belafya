@@ -1,10 +1,14 @@
-.list-group-item.active {
+
+.list-group-item{
+  cursor: pointer;
+}.list-group-item.active {
   background-color: #e39e4a;
   border-color: #e39e4a;
   color: #8a3135;
+  font-weight: bold;
 }
 .list-group-item:not(.active) {
-  background-color: #8a3135;
+  background-color: white;
   border-color: #e39e4a;
   color: #e39e4a;
 }

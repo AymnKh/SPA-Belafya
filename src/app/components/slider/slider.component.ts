@@ -1,7 +1,9 @@
+
 import { Component } from '@angular/core';
 import { SliderService } from "../../services/slider.service";
 import { Slider } from "../../model/slider-model";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { AlertifyService } from 'src/app/services/alertify.service';
 
 @Component({
   selector: 'app-slider',
@@ -12,7 +14,8 @@ export class SliderComponent {
   slider: Slider[] = [];
   imageUrl!: FormControl;
   loading: boolean = false;
-  constructor(private sliderService: SliderService) {
+  loadingSpinner: boolean = false;
+  constructor(private sliderService: SliderService, private alertifyService:AlertifyService) {
   }
 
   ngOnInit() {
@@ -25,27 +28,35 @@ export class SliderComponent {
         this.slider = data; // assign slider images to slider array
       },
       error: (err) => {
-        alert(err.message) // show error
+        this.alertifyService.error(err); // show error
       }
     });
   }
   deleteImage(id: string) {
+    this.loadingSpinner = true; // show loading spinner
     this.sliderService.deleteSlideById(id).subscribe({ // delete slider image by id
       next: (data) => {
-        location.reload(); // reload page
+        this.alertifyService.success(data); // shoow success alert
+        this.getAllSliderImages() // get all sliders after adding new slider
       },
       error: (err) => {
-        console.log(err) // show error
+        this.alertifyService.error(err); // show error alert
+      }, complete: () => {
+        this.loadingSpinner = false; 
       }
     })
   }
   deleteAllSliderImages() {
+    this.loadingSpinner = true; // show loading spinner
     this.sliderService.deleteAllSliderImages().subscribe({ // delete all slider images
       next: (data) => {
-        location.reload();  // reload page
+        this.alertifyService.success(data); // shoow success alert
+        this.getAllSliderImages() // get all sliders after adding new slider
       },
       error: (err) => {
-        console.log(err) // show error
+        this.alertifyService.error(err); // show error alert
+      }, complete: () => {
+        this.loadingSpinner = false;
       }
     })
   }
@@ -59,9 +70,11 @@ export class SliderComponent {
     this.loading = true;
     this.sliderService.addNewSliderImage(slider).subscribe({ // upload image
       next: (data) => {
-       this.getAllSliderImages() // get all sliders after adding new slider
+        this.alertifyService.success(data); // alert success
+        this.getAllSliderImages() // get all sliders after adding new slider
       }, error: (err) => {
-        console.log(err) // show error
+        this.loading = false; // loading to false after complete 
+        this.alertifyService.error(err); // alert error 
       }, complete: () => {
         this.loading = false; // loading to false after complete 
       }

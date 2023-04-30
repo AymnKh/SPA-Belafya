@@ -1,6 +1,6 @@
 export interface Product {
     _id: string
-    image: string
+    imageUrl: string
     name: string
     name_ar: string
     country: string

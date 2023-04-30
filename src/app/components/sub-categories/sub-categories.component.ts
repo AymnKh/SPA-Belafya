@@ -45,7 +45,7 @@ export class SubCategoriesComponent implements OnInit {
         this.categories = data; // assign the data to the categories array
       },
       error: (err) => {
-        alert(err) // log the error
+        console.log(err);
       }
     });
   }

@@ -38,7 +38,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": ["lodash", "bootstrap"],
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "bootstrap",
+              "alertifyjs"
+            ],
             "outputPath": "dist/bel3afya-spa",
             "index": "src/index.html",
             "main": "src/main.ts",
