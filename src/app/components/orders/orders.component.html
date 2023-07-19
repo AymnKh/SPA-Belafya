@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 mt-2" *ngFor="let order of orders">
+      <div class="card text-left" (click)="getOrderDetails(order._id)">
+        <div class="card-body">
+          <h4 class="card-title">{{order.name}}</h4>
+          <p class="text-dark">{{order.address}}</p>
+          <p class="text-dark">{{order.city}}</p>
+          <p class="text-dark">{{order.phone}}</p>
+          <p class="text-dark">{{order.country}}</p>
+          <p class="text-dark">{{order.delivered}}</p>
+          <p class="text-dark">{{order.notes}}</p>
+          <p class="text-dark">{{order.totalPrice}}</p>
+        </div>
+        <div class="m-2  text-center text-sm-start">
+            <button class="btn btn-dark">delete</button>
+            <button class="btn ms-2 btn-dark">delivered</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row" *ngFor="let item of order.orderItems">
+    <div class="col-sm-12 col-md-6 col-lg-9 mt-2">
+      <h4>
+        product name :
+
+        {{ item.product.name }}
+      </h4>
+      <p class="text-dark text-capitalize">
+        product size :
+
+        {{ item.size.name }}
+      </p>
+      <p class="text-dark text-capitalize">
+        product price :
+
+        {{ item.size.price }}
+      </p>
+      <p class="text-dark text-capitalize">
+        product quantity :
+
+        {{ item.quantity }}
+      </p>
+      <p class="text-dark text-capitalize">
+        product total price :
+
+        {{ item.quantity  *  item.size.price }}
+      </p>
+      <p class="text-dark text-capitalize" *ngIf="item.head">
+        head :
+
+        {{ item.head.name }}
+      </p>
+      <p class="text-dark text-capitalize" *ngIf="item.cutting">
+        cutting :
+
+        {{ item.cutting.name }}
+      </p>
+      <p class="text-dark text-capitalize" *ngIf="item.preparation">
+        preparation :
+
+        {{ item.preparation.name }}
+      </p>
+      <p class="text-dark text-capitalize" *ngIf=" item.donationSide">
+        donation side :
+
+        {{ item.donationSide.name }}
+      </p>
+      <p class="text-dark text-capitalize" *ngIf=" item.donationStatus">
+        donation status :
+
+        {{ item.donationStatus.name }}
+      </p>
+      <br />
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-3 mt-2">
+      <img [src]="item.product.imageUrl" class="rounded" alt="" />
+    </div>
+  </div>
+  <h3>order total price :  {{ order.totalPrice }}</h3>
+</div>

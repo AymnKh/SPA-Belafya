@@ -1,3 +1,4 @@
+import { AlertifyService } from './../../services/alertify.service';
 import { SubCategoriesService } from './../../services/subCategories.service';
 import { ProductsService } from './../../services/products.service';
 import { Component, OnInit } from '@angular/core';
@@ -23,7 +24,11 @@ export class SubCategoriesComponent implements OnInit {
   adding: boolean = true;
   selectedItems: Product[] = [];
 
-  constructor(private categoriesService: CategoriesService, private productsService: ProductsService, private subCategoriesService: SubCategoriesService) { }
+  constructor(private categoriesService: CategoriesService,
+    private productsService: ProductsService,
+    private subCategoriesService: SubCategoriesService,
+    private alertifyService: AlertifyService
+  ) { }
   ngOnInit(): void {
     this.formInit();
     this.getAllCategories(); // call getAllCategories method
@@ -85,21 +90,33 @@ export class SubCategoriesComponent implements OnInit {
     this.chooseProdut(); // call chooseProduct method
     const subCategory = this.subCategoriesForm.value //subCategory form value
     this.subCategoriesService.addSubCategory(subCategory).subscribe({ // add new subCategory
-      next: (data) => {
-        this.subCategoriesForm.reset();
-        alert('added'); // alret add if success
+      next: (data: string) => {
+        this.subCategoriesForm.reset(); // reset the form
+        this.alertifyService.success(data); // alert success
+        this.getAllSubCategoris(); // call getAllSubCategories method
       },
       error: (err) => {
-        console.log(err);//log error
+        this.alertifyService.error(err); // alert error
       }
     })
   }
   deleteSubCategory(id: string) {
     this.subCategoriesService.deleteSubCategory(id).subscribe({ // delete subCategory
       next: (data) => {
+        this.alertifyService.success(data); // alert success
         this.getAllSubCategoris(); // call the method after delete
       }, error: (err) => {
-        console.log(err); // log error
+        this.alertifyService.error(err); // alert error
+      }
+    })
+  }
+  deleteAll() {
+    this.subCategoriesService.deleteAllSubCategories().subscribe({ // delete all subCategories
+      next: (data) => {
+        this.alertifyService.success(data); // alert success
+        this.getAllSubCategoris(); // call the method after delete
+      }, error: (err) => {
+        this.alertifyService.error(err); // alert error
       }
     })
   }

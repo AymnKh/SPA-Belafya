@@ -15,7 +15,7 @@ export class ProductsService {
   }
 
   getAllProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${environment.apiUrl}/products/all`, {
+    return this.http.get<Product[]>(`${environment.apiUrl}/products`, {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',

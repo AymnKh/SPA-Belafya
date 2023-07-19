@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-12 col-md-6 col-lg-3">
+    <div class="col-sm-12 mb-5">
       <div class="list-group text-capitalize text-center">
         <button
           class="list-group-item list-group-item-action text-capitalize"
@@ -21,7 +21,7 @@
     <!-- sub category form -->
     <div
       *ngIf="adding"
-      class="col-sm-12 col-md-6 col-lg-9 mt-sm-5 mt-lg-0 mt-md-0"
+      class="col-sm-12"
     >
       <form [formGroup]="subCategoriesForm" (ngSubmit)="addSubCategory()">
         <!-- name -->
@@ -79,12 +79,12 @@
     <!-- display all sub categories -->
     <ng-container *ngIf="!adding">
       <div
-        class="col-sm-12 col-md-3 col-lg-3 mt-sm-5 mt-lg-0 mt-md-0"
+        class="col-sm-12 col-md-6 col-lg-3"
         *ngFor="let subCat of subCategories"
       >
-        <div class="card">
+        <div class="card mt-2">
           <div class="text-center">
-            <p class="text-dark fw-bolder lead">{{ subCat.name }}</p>
+            <p class="text-dark fw-bolder lead text-truncate">{{ subCat.name }}</p>
             <p class="text-dark fw-bolder lead">{{ subCat.name_ar }}</p>
           </div>
           <button class="btn btn-dark" (click)="deleteSubCategory(subCat._id)">
@@ -93,5 +93,10 @@
         </div>
       </div>
     </ng-container>
+    <div class="col-sm-12 text-center" *ngIf="!adding">
+      <button class="btn mt-5  btn-dark" (click)="deleteAll()">
+        Delete All
+      </button>
+    </div>
   </div>
 </div>

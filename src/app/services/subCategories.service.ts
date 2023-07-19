@@ -13,15 +13,18 @@ export class SubCategoriesService {
 constructor(private http:HttpClient) { }
 
   
-  addSubCategory(subCategory: FormGroup) {
-    return this.http.post<SubCategory>(`${environment.apiUrl}/sub-categories/add`, subCategory);
+  addSubCategory(subCategory: FormGroup):Observable<string> {
+    return this.http.post<string>(`${environment.apiUrl}/sub-categories/add`, subCategory);
   }
 
   getAllSubCategories(): Observable<SubCategory[]>{
-    return this.http.get<SubCategory[]>(`${environment.apiUrl}/sub-categories/all`);
+    return this.http.get<SubCategory[]>(`${environment.apiUrl}/sub-categories`);
   }
 
-  deleteSubCategory(id: string) {
-    return this.http.delete(`${environment.apiUrl}/sub-categories/${id}`);
+  deleteSubCategory(id: string): Observable<string> {
+    return this.http.delete<string>(`${environment.apiUrl}/sub-categories/${id}`);
   }
+  deleteAllSubCategories(): Observable<string> { 
+    return this.http.delete<string>(`${environment.apiUrl}/sub-categories`);
+   }
 }
